@@ -1,5 +1,5 @@
 <?php
-    $page_title = 'Home';
+    $page_title = 'Login';
     include('header.php');
 ?>
 
