@@ -53,7 +53,7 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="row">
-                <p class="pull-left">Copyright © 2014 Three Little Pigs Construction Equipment Inc. All rights reserved.</p>
+                <p class="pull-left">Copyright © 2016 Three Little Pigs Construction Equipment Inc. All rights reserved.</p>
             </div>
         </div>
     </div>

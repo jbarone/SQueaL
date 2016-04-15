@@ -2,7 +2,8 @@
     $mysqli = new mysqli("localhost", "root", "root", "three_little_pigs");
     if(isset($_GET['category'])) {
         $category_id = $_GET['category'];
-        $categories = $mysqli->query("SELECT name FROM product_category WHERE id = $category_id;");
+        $categories = $mysqli->query("SELECT name FROM product_category WHERE id = $category_id;")
+            or trigger_error("Query Failed! SQL: $sql - Error: ".$mysqli->error, E_USER_ERROR);
         $category = $categories->fetch_assoc();
         $page_title = $category['name'];
         $query = "SELECT * FROM product WHERE category = $category_id ORDER BY name;";
@@ -10,11 +11,12 @@
         $search = $_GET['search'];
         $page_title = "Search Items";
         $query = "SELECT * FROM product WHERE name like '%$search%' or description like '%$search%' ORDER BY name;";
-        print $query;
     } else {
         $page_title = 'All Items';
         $query = "SELECT * FROM product ORDER BY name;";
     }
+    $products = $mysqli->query($query)
+        or trigger_error("Query Failed! SQL: $sql - Error: ".$mysqli->error, E_USER_ERROR);
     $mysqli->close();
     include('header.php');
 ?>
@@ -30,7 +32,6 @@
             <div class="features_items">
                 <h2 class="title text-center"><?=$page_title?></h2>
                 <?php
-                    $products = $mysqli->query($query);
                     if($products->num_rows > 0){
                         include('items.php');
                     } else {
